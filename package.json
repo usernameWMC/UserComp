@@ -1,0 +1,35 @@
+{
+  "name": "@usercomp/workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm --filter @usercomp/play dev",
+    "docs:dev": "pnpm --filter @usercomp/docs dev",
+    "docs:build": "pnpm --filter @usercomp/docs build",
+    "test": "echo todo"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "lodash": "^4.17.21",
+    "postcss-color-mix": "^1.1.0",
+    "postcss-each": "^1.1.0",
+    "postcss-each-variables": "^0.3.0",
+    "postcss-for": "^2.1.1",
+    "postcss-nested": "^6.0.1",
+    "vite": "^5.1.4",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "vue": "^3.4.19",
+    "usercomp": "workspace:*",
+    "@usercomp/hooks": "workspace:*",
+    "@usercomp/utils": "workspace:*",
+    "@usercomp/theme": "workspace:*"
+  }
+}
