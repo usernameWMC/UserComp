@@ -1,0 +1,201 @@
+.er-button-group {
+  --user-button-group-border-color: var(--user-border-color-lighter);
+}
+
+/* 按钮的基础样式 */
+.er-button {
+  --user-button-font-weight: var(--user-font-weight-primary);
+  --user-button-border-color: var(--user-border-color);
+  --user-button-bg-color: var(--user-fill-color-blank);
+  --user-button-text-color: var(--user-text-color-regular);
+  --user-button-disabled-text-color: var(--user-disabled-text-color);
+  --user-button-disabled-bg-color: var(--user-fill-color-blank);
+  --user-button-disabled-border-color: var(--user-border-color-light);
+  --user-button-hover-text-color: var(--user-color-primary);
+  --user-button-hover-bg-color: var(--user-color-primary-light-9);
+  --user-button-hover-border-color: var(--user-color-primary-light-7);
+  --user-button-active-text-color: var(--user-button-hover-text-color);
+  --user-button-active-border-color: var(--user-color-primary);
+  --user-button-active-bg-color: var(--user-button-hover-bg-color);
+  --user-button-outline-color: var(--user-color-primary-light-5);
+  --user-button-active-color: var(--user-text-color-primary);
+}
+
+.er-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--user-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--user-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--user-button-bg-color);
+  border: var(--user-border);
+  border-color: var(--user-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--user-font-size-base);
+  border-radius: var(--user-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--user-button-hover-text-color);
+    border-color: var(--user-button-hover-border-color);
+    background-color: var(--user-button-hover-bg-color);
+    outline: none;
+  }
+  &:active {
+    color: var(--user-button-active-text-color);
+    border-color: var(--user-button-active-border-color);
+    background-color: var(--user-button-active-bg-color);
+    outline: none;
+  }
+  /*plain*/
+  &.is-plain {
+    --user-button-hover-text-color: var(--user-color-primary);
+    --user-button-hover-bg-color: var(--user-fill-color-blank);
+    --user-button-hover-border-color: var(--user-color-primary);
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--user-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-loading,
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--user-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--user-button-disabled-bg-color);
+    border-color: var(--user-button-disabled-border-color);
+  }
+  [class*='er-icon'] {
+    width: 1em;
+    height: 1em;
+  }
+}
+@each $val in primary, success, warning, info, danger {
+  .er-button--$(val) {
+    --user-button-text-color: var(--user-color-white);
+    --user-button-bg-color: var(--user-color-$(val));
+    --user-button-border-color: var(--user-color-$(val));
+    --user-button-outline-color: var(--user-color-$(val)-light-5);
+    --user-button-active-color: var(--user-color-$(val)-dark-2);
+    --user-button-hover-text-color: var(--user-color-white);
+    --user-button-hover-bg-color: var(--user-color-$(val)-light-3);
+    --user-button-hover-border-color: var(--user-color-$(val)-light-3);
+    --user-button-active-bg-color: var(--user-color-$(val)-dark-2);
+    --user-button-active-border-color: var(--user-color-$(val)-dark-2);
+    --user-button-disabled-text-color: var(--user-color-white);
+    --user-button-disabled-bg-color: var(--user-color-$(val)-light-5);
+    --user-button-disabled-border-color: var(--user-color-$(val)-light-5);
+  }
+  .er-button--$(val).is-plain {
+    --user-button-text-color: var(--user-color-$(val));
+    --user-button-bg-color: var(--user-color-$(val)-light-9);
+    --user-button-border-color: var(--user-color-$(val)-light-5);
+    --user-button-hover-text-color: var(--user-color-white);
+    --user-button-hover-bg-color: var(--user-color-$(val));
+    --user-button-hover-border-color: var(--user-color-$(val));
+    --user-button-active-text-color: var(--user-color-white);
+
+    --user-button-disabled-text-color: var(--user-color-$(val)-light-5);
+    --user-button-disabled-bg-color: var(--user-color-$(val)-light-9);
+    --user-button-disabled-border-color: var(--user-color-$(val)-light-8);
+  }
+}
+.er-button--large {
+  --user-button-size: 40px;
+  height: var(--user-button-size);
+  padding: 12px 19px;
+  font-size: var(--user-font-size-base);
+  border-radius: var(--user-border-radius-base);
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 12px;
+  }
+}
+.er-button--small {
+  --user-button-size: 24px;
+  height: var(--user-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--user-border-radius-base) - 1px);
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 5px;
+  }
+  [class*='er-icon'] {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.er-button-group {
+  display: inline-block;
+  vertical-align: middle;
+
+  &::after {
+    clear: both;
+  }
+  & > :deep(.er-button){
+    float: left;
+    position: relative;
+    margin-left: 0;
+    &:first-child{
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right-color: var(--user-button-group-border-color);
+    }
+    &:last-child{
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; 
+      border-left-color: var(--user-button-group-border-color);
+    }
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+
+      border-left-color: var(--user-button-group-border-color);
+      border-right-color: var(--user-button-group-border-color);
+    }
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+    &:first-child:last-child {
+      border-top-right-radius: var(--user-border-radius-base);
+      border-bottom-right-radius: var(--user-border-radius-base);
+      border-top-left-radius: var(--user-border-radius-base);
+      border-bottom-left-radius: var(--user-border-radius-base);
+
+      &.is-round {
+        border-radius: var(--user-border-radius-round);
+      }
+
+      &.is-circle {
+        border-radius: 50%;
+      }
+    }
+  }
+}

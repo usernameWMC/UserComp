@@ -1,9 +1,8 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <user-button></user-button>
+  <user-button>点击</user-button>
 </template>
 
 <style scoped>

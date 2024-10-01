@@ -7,7 +7,7 @@
     "dev": "pnpm --filter @usercomp/play dev",
     "docs:dev": "pnpm --filter @usercomp/docs dev",
     "docs:build": "pnpm --filter @usercomp/docs build",
-    "test": "echo todo"
+    "test": "pnpm --filter @usercomp/components test"
   },
   "keywords": [],
   "author": "",

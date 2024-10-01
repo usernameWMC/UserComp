@@ -11,7 +11,7 @@ describe("Button.vue", () => {
       const wrapper = mount(Button, {
         props: { type },
       });
-      expect(wrapper.classes()).toContain(`er-button--${type}`);
+      expect(wrapper.classes()).toContain(`user-button--${type}`);
     });
   });
 
@@ -22,7 +22,7 @@ describe("Button.vue", () => {
       const wrapper = mount(Button, {
         props: { size },
       });
-      expect(wrapper.classes()).toContain(`er-button--${size}`);
+      expect(wrapper.classes()).toContain(`user-button--${size}`);
     });
   });
 

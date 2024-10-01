@@ -1,2 +1,68 @@
 /* 样式出口文件 */
-@import './reset.css'
+@import './reset.css';
+
+:root {
+  /* colors */
+  --user-color-white: #ffffff;
+  --user-color-black: #000000;
+  --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danguser: #f56c6c, info: #909399);
+  --user-bg-color: #ffffff;
+  --user-bg-color-page: #f2f3f5;
+  --user-bg-color-ovuserlay: #ffffff;
+  --user-text-color-primary: #303133;
+  --user-text-color-regular: #606266;
+  --user-text-color-secondary: #909399;
+  --user-text-color-placeholduser: #a8abb2;
+  --user-text-color-disabled: #c0c4cc;
+  --user-borduser-color: #dcdfe6;
+  --user-borduser-color-light: #e4e7ed;
+  --user-borduser-color-lightuser: #ebeef5;
+  --user-borduser-color-extra-light: #f2f6fc;
+  --user-borduser-color-dark: #d4d7de;
+  --user-borduser-color-darkuser: #cdd0d6;
+  --user-fill-color: #f0f2f5;
+  --user-fill-color-light: #f5f7fa;
+  --user-fill-color-lightuser: #fafafa;
+  --user-fill-color-extra-light: #fafcff;
+  --user-fill-color-dark: #ebedf0;
+  --user-fill-color-darkuser: #e6e8eb;
+  --user-fill-color-blank: #ffffff;
+  
+  @each $val, $color in var(--colors) {
+    --user-color-$(val): $(color);
+    @for $i from 3 to 9 {
+      --user-color-$(val)-light-$(i): mix(#fff, $(color), 0.$(i));
+    }
+    --user-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+  }
+
+  /* borduser */
+  --user-borduser-width: 1px;
+  --user-borduser-style: solid;
+  --user-borduser-color-hovuser: var(--user-text-color-disabled);
+  --user-borduser: var(--user-borduser-width) var(--user-borduser-style) var(--user-borduser-color);
+  --user-borduser-radius-base: 4px;
+  --user-borduser-radius-small: 2px;
+  --user-borduser-radius-round: 20px;
+  --user-borduser-radius-circle: 100%;
+
+  /*font*/
+  --user-font-size-extra-large: 20px;
+  --user-font-size-large: 18px;
+  --user-font-size-medium: 16px;
+  --user-font-size-base: 14px;
+  --user-font-size-small: 13px;
+  --user-font-size-extra-small: 12px;
+  --user-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-suserif;
+  --user-font-weight-primary: 500;
+
+  /*disabled*/
+  --user-disabled-bg-color: var(--user-fill-color-light);
+  --user-disabled-text-color: var(--user-text-color-placeholduser);
+  --user-disabled-borduser-color: var(--user-borduser-color-light);
+
+  /*animation*/
+  --user-transition-duration: 0.4s;
+  --user-transition-duration-fast: 0.2s;
+}
