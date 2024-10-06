@@ -7,15 +7,24 @@
     "dev": "pnpm --filter @usercomp/play dev",
     "docs:dev": "pnpm --filter @usercomp/docs dev",
     "docs:build": "pnpm --filter @usercomp/docs build",
-    "test": "pnpm --filter @usercomp/components test"
+    "test": "pnpm --filter @usercomp/components test",
+    "book": "pnpm --filter @usercomp/play storybook",
+    "build": "pnpm --filter usercomp build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "6.5.1",
+    "@fortawesome/free-solid-svg-icons": "6.5.1",
+    "@fortawesome/vue-fontawesome": "3.0.6",
+    "@popperjs/core": "^2.11.8",
+    "async-validator": "^4.2.5",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "lodash": "^4.17.21",
+    "move-file-cli": "3.0.0",
+    "npm-run-all": "4.1.5",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
     "postcss-each-variables": "^0.3.0",
@@ -25,11 +34,11 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
-    "lodash-es": "^4.17.21",
-    "vue": "^3.4.19",
-    "usercomp": "workspace:*",
     "@usercomp/hooks": "workspace:*",
+    "@usercomp/theme": "workspace:*",
     "@usercomp/utils": "workspace:*",
-    "@usercomp/theme": "workspace:*"
+    "lodash-es": "^4.17.21",
+    "usercomp": "workspace:*",
+    "vue": "^3.4.19"
   }
 }

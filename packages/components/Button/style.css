@@ -1,9 +1,9 @@
-.er-button-group {
+.user-button-group {
   --user-button-group-border-color: var(--user-border-color-lighter);
 }
 
 /* 按钮的基础样式 */
-.er-button {
+.user-button {
   --user-button-font-weight: var(--user-font-weight-primary);
   --user-button-border-color: var(--user-border-color);
   --user-button-bg-color: var(--user-fill-color-blank);
@@ -21,7 +21,7 @@
   --user-button-active-color: var(--user-text-color-primary);
 }
 
-.er-button {
+.user-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -95,7 +95,7 @@
   }
 }
 @each $val in primary, success, warning, info, danger {
-  .er-button--$(val) {
+  .user-button--$(val) {
     --user-button-text-color: var(--user-color-white);
     --user-button-bg-color: var(--user-color-$(val));
     --user-button-border-color: var(--user-color-$(val));
@@ -110,7 +110,7 @@
     --user-button-disabled-bg-color: var(--user-color-$(val)-light-5);
     --user-button-disabled-border-color: var(--user-color-$(val)-light-5);
   }
-  .er-button--$(val).is-plain {
+  .user-button--$(val).is-plain {
     --user-button-text-color: var(--user-color-$(val));
     --user-button-bg-color: var(--user-color-$(val)-light-9);
     --user-button-border-color: var(--user-color-$(val)-light-5);
@@ -124,7 +124,7 @@
     --user-button-disabled-border-color: var(--user-color-$(val)-light-8);
   }
 }
-.er-button--large {
+.user-button--large {
   --user-button-size: 40px;
   height: var(--user-button-size);
   padding: 12px 19px;
@@ -136,7 +136,7 @@
     padding: 12px;
   }
 }
-.er-button--small {
+.user-button--small {
   --user-button-size: 24px;
   height: var(--user-button-size);
   padding: 5px 11px;
@@ -153,14 +153,14 @@
   }
 }
 
-.er-button-group {
+.user-button-group {
   display: inline-block;
   vertical-align: middle;
 
   &::after {
     clear: both;
   }
-  & > :deep(.er-button){
+  & > :deep(.user-button){
     float: left;
     position: relative;
     margin-left: 0;

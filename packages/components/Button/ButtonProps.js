@@ -26,5 +26,13 @@ export const ButtonProps = {
   icon: String,
   circle: Boolean,
   plain: Boolean,
-  round: Boolean
+  round: Boolean,
+  // 加载图标
+  loadingIcon: String,
+  // 自动聚焦
+  autofocus: Boolean,
+  // 是否节流
+  useThrottle: Boolean,
+  // 节流时间
+  throttleDuration: Number
 }

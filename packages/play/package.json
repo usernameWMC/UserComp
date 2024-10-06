@@ -6,9 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.2"
+    "@chromatic-com/storybook": "1.9.0",
+    "@storybook/addon-essentials": "8.3.4",
+    "@storybook/addon-interactions": "8.3.4",
+    "@storybook/addon-links": "8.3.4",
+    "@storybook/addon-onboarding": "8.3.4",
+    "@storybook/blocks": "8.3.4",
+    "@storybook/test": "8.3.4",
+    "@storybook/vue3": "8.3.4",
+    "@storybook/vue3-vite": "8.3.4",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "storybook": "8.3.4"
   }
 }

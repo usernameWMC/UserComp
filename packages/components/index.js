@@ -1,5 +1,4 @@
 // 一个组件出口文件
 
-import UserButton from './Button'
-
-export default UserButton
+export * from './Button'
+export * from './Icon'
