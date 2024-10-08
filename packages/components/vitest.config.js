@@ -12,5 +12,3 @@ module.exports = defineConfig({
     environment: 'jsdom'
   }
 })
-
-// "test": "vitest --coverage"

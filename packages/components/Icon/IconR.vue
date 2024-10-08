@@ -1,6 +1,6 @@
 <template>
-  <i class="uer-icon" :class="[`user-icon-${props.type}`]" :style="customStyles" v-bind="$attrs">
-    <font-awesome-icon v-bind="filterProps" />
+  <i class="user-icon" :class="[`user-icon-${props.type}`]" :style="customStyles" v-bind="$attrs">
+    <font-awesome-icon :icon="filterProps" class="header-angle" />
   </i>
 </template>
 <script setup>

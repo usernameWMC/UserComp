@@ -19,9 +19,9 @@
     "@fortawesome/free-solid-svg-icons": "6.5.1",
     "@fortawesome/vue-fontawesome": "3.0.6",
     "@popperjs/core": "^2.11.8",
-    "async-validator": "^4.2.5",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "async-validator": "^4.2.5",
     "lodash": "^4.17.21",
     "move-file-cli": "3.0.0",
     "npm-run-all": "4.1.5",
@@ -30,6 +30,7 @@
     "postcss-each-variables": "^0.3.0",
     "postcss-for": "^2.1.1",
     "postcss-nested": "^6.0.1",
+    "shelljs": "^0.8.5",
     "vite": "^5.1.4",
     "vitest": "^1.4.0"
   },

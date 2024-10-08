@@ -3,7 +3,7 @@ export const IconProps = {
     // icon: 可以是数组、对象或字符串，表示图标的名称或图标对象
     icon: {
       type: [Array, Object, String],
-      required: true
+      require: true
     },
 
     // size: 字符串类型，表示图标的大小，支持 'xs', 'lg', '2x', '3x', '4x', '5x' 等

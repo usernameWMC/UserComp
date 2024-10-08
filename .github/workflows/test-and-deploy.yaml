@@ -1,36 +1,49 @@
+# 定义了整个 workflow 的名称。这里命名为 "Test and deploy"，表示该 workflow 主要进行测试和部署的操作。
 name: Test and deploy
 
 on:
+  # 表示当有代码被推送到仓库时会触发这个 workflow。这里指定了 main 分支，意味着只有当代码推送到 main 分支时才会触发。
   push:
     branches:
       - main
-
+  # 手动触发 workflow 的选项，允许你通过 GitHub UI 手动运行此 workflow。
   workflow_dispatch:
 
+# 定义了多个任务（jobs）。这里有三个任务：test、build 和 deploy
 jobs:
+  # 定义了第一个任务，名称为 Run Lint and Test，该任务的主要目的是运行代码检查和测试。
   test:
     name: Run Lint and Test
+    # 指定了在 GitHub 提供的最新的 Ubuntu 虚拟环境中运行该任务。GitHub 提供多种环境，ubuntu-latest 是其中之一
     runs-on: ubuntu-latest
-
+    # 定义了该任务中需要执行的步骤。
     steps:
+      # 这是这个步骤的名称，意思是 "签出（拉取）代码库"。
       - name: Checkout repo
+        # 使用 GitHub 提供的 checkout action，将代码库签出到虚拟环境中，以便在后续步骤中进行测试和操作。@v3 表示使用这个 action 的第3个版本。
         uses: actions/checkout@v3
-
+      # 这个步骤的名称，作用是 "设置 Node.js 环境"。
       - name: Setup Node
+        # 使用 GitHub 提供的 setup-node action，安装 Node.js，并将其添加到运行环境中，版本为 v3。
         uses: actions/setup-node@v3
-
+      # 这个步骤的名称，表示 "安装 pnpm"。
       - name: Install pnpm
+        # 运行 npm 命令，全局安装 pnpm 包管理工具。pnpm 是一种快速、高效的 Node.js 包管理器
         run: npm install -g pnpm
-
+      # 这个步骤的名称，表示 "安装依赖"。
       - name: Install dependencies
+        # 使用 pnpm 来安装项目的依赖。--frozen-lockfile 确保安装依赖时严格按照 pnpm-lock.yaml 文件中的锁定版本进行，避免安装过程中依赖版本发生变化。
         run: pnpm install --frozen-lockfile
-
+      # 这个步骤的名称，表示 "运行测试"。
       - name: Run tests
+        # 运行 npm run test 命令，执行项目中的测试脚本。你可以将这个命令替换为 pnpm run test，因为你已经安装了 pnpm。
         run: npm run test
-
+  # 定义了第二个任务，名称为 "Build docs"，该任务的主要目的是构建文档。
   build:
     name: Build docs
+    # 同样在最新的 Ubuntu 虚拟环境中运行。
     runs-on: ubuntu-latest
+    # 表示 build 任务依赖于 test 任务，只有 test 任务成功通过，build 任务才会执行。
     needs: test
 
     steps:
@@ -46,27 +59,49 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 构建文档的步骤。
       - name: Build docs
+        # 运行 npm run docs:build 命令，生成静态文档（可能使用 VitePress 或其他静态文档生成工具）。你可以改为 pnpm run docs:build。
         run: npm run docs:build
-
+      # 这个步骤的名称，表示 "上传文档"。
       - name: Upload docs
+        # 使用 GitHub 提供的 upload-artifact action，将构建的文档作为工件上传，以便在后续任务中下载和部署。
         uses: actions/upload-artifact@v3
+        # 指定参数。
         with:
+          # 设置上传的工件名称为 docs。
           name: docs
+          # 指定要上传的文档路径，这里是 VitePress 生成的静态文件目录。
           path: ./packages/docs/.vitepress/dist
-
+  # 定义了第三个任务，名称为 "Deploy to GitHub Pages"。
   deploy:
     name: Deploy to GitHub Pages
+    # 在最新的 Ubuntu 虚拟环境中运行。
     runs-on: ubuntu-latest
+    # 表示 deploy 任务依赖于 build 任务，只有 build 任务成功后才会执行部署。
     needs: build
     steps:
+      # 下载之前构建并上传的文档。
       - name: Download docs
+        # 使用 GitHub 提供的 download-artifact action，下载在 build 任务中上传的文档工件。
         uses: actions/download-artifact@v3
+        # 指定参数。
         with:
+          # 指定下载的工件名称为 docs。
           name: docs
-
+      # 这个步骤的名称，表示 "部署到 GitHub Pages"。
       - name: Deploy to GitHub Pages
+        # 使用第三方的 peaceiris/actions-gh-pages action，将文档发布到 GitHub Pages。
         uses: peaceiris/actions-gh-pages@v3
+        # 指定参数。
         with:
+          # 使用 GitHub 提供的 GH_TOKEN 来进行认证。这个 token 通常保存在 GitHub 的 secrets 中，你需要在 GitHub 仓库的 Secrets 设置中配置 GH_TOKEN。
           github_token: ${{ secrets.GH_TOKEN }}
+          # 指定要发布的目录，这里是当前目录
           publish_dir: .
+# 这个 GitHub Actions workflow 分为三个主要任务：
+# 测试（test）：签出代码库，设置 Node.js 环境，安装依赖并运行测试。
+# 构建文档（build）：测试通过后，构建文档并上传文档工件。
+# 部署（deploy）：下载文档工件并将其部署到 GitHub Pages。
+# 整个过程可以自动化测试、文档生成和部署，非常适合持续集成和持续部署（CI/CD）流程。
+

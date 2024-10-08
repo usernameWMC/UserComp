@@ -6,6 +6,7 @@
 <script setup>
 import { provide, reactive, toRef } from 'vue';
 import { ButtonGroupProps } from './ButtonGroupProps.js';
+import { Button_Group_CTX_key } from './content.js';
 defineOptions({
   name: 'ButtonGroups'
 });
@@ -14,7 +15,7 @@ const props = defineProps(ButtonGroupProps);
 
 // 提供依赖
 provide(
-  'Button_Group_CTX_key',
+  Button_Group_CTX_key,
   reactive({
     size: toRef(props, 'size'),
     type: toRef(props, 'type'),

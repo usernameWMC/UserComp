@@ -1,14 +1,25 @@
 // UMD 打包
-
+import { readFileSync } from 'fs'
 // 导入必要的模块
 import { defineConfig } from 'vite' // Vite 的配置函数
 import vue from '@vitejs/plugin-vue' // Vue 插件
 import { resolve } from 'path' // 用于处理路径
+import { compression } from 'vite-plugin-compression2'
+import shell from 'shelljs'
+
+function moveFileStyle() {
+  try {
+    // 既然这个文件能够读取 就意味着这个文件存在
+    readFileSync('./dist/umd/style.css.gz')
+    // 移动文件
+    shell.cp('./dist/umd/style.css', './dist/index.css')
+  } catch (e) {}
+}
 
 // 导出 Vite 配置
 export default defineConfig({
   // 使用 Vue 插件
-  plugins: [vue()],
+  plugins: [vue(), compression({ include: /.(cjs|css)$/i })],
   build: {
     // 构建输出目录
     outDir: 'dist/umd',
