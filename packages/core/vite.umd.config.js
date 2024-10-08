@@ -6,6 +6,8 @@ import vue from '@vitejs/plugin-vue' // Vue 插件
 import { resolve } from 'path' // 用于处理路径
 import { compression } from 'vite-plugin-compression2'
 import shell from 'shelljs'
+import hooks from './hookPlugin.js'
+import { delay } from 'lodash-es'
 
 function moveFileStyle() {
   try {
@@ -13,13 +15,22 @@ function moveFileStyle() {
     readFileSync('./dist/umd/style.css.gz')
     // 移动文件
     shell.cp('./dist/umd/style.css', './dist/index.css')
-  } catch (e) {}
+  } catch (e) {
+    delay(moveFileStyle, 800)
+  }
 }
 
 // 导出 Vite 配置
 export default defineConfig({
   // 使用 Vue 插件
-  plugins: [vue(), compression({ include: /.(cjs|css)$/i })],
+  plugins: [
+    vue(),
+    compression({ include: /.(cjs|css)$/i }),
+    hooks({
+      rmFiles: ['./dist/umd', './dist/index.css'],
+      afterBuild: moveFileStyle
+    })
+  ],
   build: {
     // 构建输出目录
     outDir: 'dist/umd',

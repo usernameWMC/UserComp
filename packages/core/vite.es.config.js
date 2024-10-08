@@ -4,6 +4,8 @@ import { readdirSync, readdir } from 'fs'
 import { resolve } from 'path' // 用于处理路径
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import shell from 'shelljs'
+import hooks from './hookPlugin.js'
 
 import vue from '@vitejs/plugin-vue' // Vue 插件
 import { defineConfig } from 'vite' // Vite 的配置函数
@@ -13,6 +15,17 @@ import { defer, delay, filter, map, includes } from 'lodash-es'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+
+function moveFileStyle() {
+  try {
+    // 既然这个文件能够读取 就意味着这个文件存在
+    readFileSync('./dist/umd/style.css.gz')
+    // 移动文件
+    shell.cp('./dist/umd/style.css', './dist/index.css')
+  } catch (e) {
+    delay(moveFileStyle, 800)
+  }
+}
 
 // 添加组件
 function getDirectoriesSync(basePath) {
@@ -31,6 +44,10 @@ export default defineConfig({
     visualizer({
       filename: 'dist/stats.html', // 可视化结果的输出文件
       open: false // 构建完成后自动打开
+    }),
+    hooks({
+      rmFiles: ['./dist/es', './dist/theme'],
+      afterBuild: moveFileStyle
     })
   ],
   build: {
@@ -52,6 +69,7 @@ export default defineConfig({
       // 外部依赖，不打包
       external: ['vue', '@fortawesome/fontawesome-svg-core', '@fortawesome/free-solid-svg-icons', '@fortawesome/vue-fontawesome'],
       output: {
+        exports: 'named',
         assetFileNames: assetInfo => {
           // 自定义资产文件名
           // 将 style.css 重命名为 index.css
